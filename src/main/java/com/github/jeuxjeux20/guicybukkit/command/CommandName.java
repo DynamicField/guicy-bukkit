@@ -36,6 +36,7 @@ public @interface CommandName {
          * Gets the {@link CommandName} {@linkplain CommandName#value() value} of the specified class.
          * <p>
          * If there is no {@link CommandName} annotation, a {@link UnsupportedOperationException} will be thrown.
+         * @throws UnsupportedOperationException when no {@link CommandName} annotation on the class has been found.
          * @param clazz the class annotated with {@link CommandName} or not
          * @return the command name
          */

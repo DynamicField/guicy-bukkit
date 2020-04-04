@@ -136,6 +136,7 @@ public class PluginDependencies {
      * If the {@code commandFinder} returns {@code null},
      * this method will <b>throw a {@link CommandNotFoundException}</b>.
      *
+     * @throws CommandNotFoundException when {@code commandFinder} returns {@code null}.
      * @param commandFinder a command finder used to find the command for each command configurator
      */
     public void registerCommands(CommandConfigurator.CommandFinder commandFinder) {

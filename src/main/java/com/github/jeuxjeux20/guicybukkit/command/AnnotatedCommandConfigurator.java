@@ -17,6 +17,7 @@ public interface AnnotatedCommandConfigurator extends CommandConfigurator {
      * If a {@link CommandName} annotation is not present on this object's class, this will throw a
      * {@link UnsupportedOperationException}.
      *
+     * @throws UnsupportedOperationException when no {@link CommandName} annotation on this type has been found.
      * @implSpec The default implementation gets
      * the {@link CommandName} value using {@link CommandName.Helper#getCommandNameOrThrow(Class)}.
      */
