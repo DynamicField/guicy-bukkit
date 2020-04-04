@@ -1,9 +1,9 @@
-package io.github.jeuxjeux20.guicybukkit;
+package com.github.jeuxjeux20.guicybukkit;
 
+import com.github.jeuxjeux20.guicybukkit.command.CommandConfigurator;
+import com.github.jeuxjeux20.guicybukkit.command.CommandNotFoundException;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import io.github.jeuxjeux20.guicybukkit.command.CommandConfigurator;
-import io.github.jeuxjeux20.guicybukkit.command.CommandNotFoundException;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;

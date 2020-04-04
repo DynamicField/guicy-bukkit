@@ -1,4 +1,4 @@
-package io.github.jeuxjeux20.guicybukkit.command;
+package com.github.jeuxjeux20.guicybukkit.command;
 
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;

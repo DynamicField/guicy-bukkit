@@ -1,6 +1,6 @@
-package io.github.jeuxjeux20.guicybukkit.command;
+package com.github.jeuxjeux20.guicybukkit.command;
 
-import io.github.jeuxjeux20.guicybukkit.PluginTestBase;
+import com.github.jeuxjeux20.guicybukkit.PluginTestBase;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.PluginCommandUtils;
 import org.junit.jupiter.api.Test;
