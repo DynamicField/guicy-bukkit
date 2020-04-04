@@ -1,9 +1,9 @@
-package fr.jeuxjeux20.guicybukkit;
+package io.github.jeuxjeux20.guicybukkit;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Injector;
 import com.google.inject.multibindings.Multibinder;
-import fr.jeuxjeux20.guicybukkit.command.CommandConfigurator;
+import io.github.jeuxjeux20.guicybukkit.command.CommandConfigurator;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 

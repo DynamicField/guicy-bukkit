@@ -1,10 +1,10 @@
-package fr.jeuxjeux20.guicybukkit;
+package io.github.jeuxjeux20.guicybukkit;
 
 import be.seeseemelk.mockbukkit.MockPlugin;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.multibindings.Multibinder;
-import fr.jeuxjeux20.guicybukkit.command.CommandConfigurator;
+import io.github.jeuxjeux20.guicybukkit.command.CommandConfigurator;
 import org.bukkit.event.Listener;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;

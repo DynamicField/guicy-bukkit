@@ -1,4 +1,4 @@
-package fr.jeuxjeux20.guicybukkit;
+package io.github.jeuxjeux20.guicybukkit;
 
 import be.seeseemelk.mockbukkit.MockBukkit;
 import be.seeseemelk.mockbukkit.MockPlugin;

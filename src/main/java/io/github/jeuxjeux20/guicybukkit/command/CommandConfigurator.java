@@ -1,7 +1,7 @@
-package fr.jeuxjeux20.guicybukkit.command;
+package io.github.jeuxjeux20.guicybukkit.command;
 
-import fr.jeuxjeux20.guicybukkit.PluginDependencies;
-import fr.jeuxjeux20.guicybukkit.PluginModule;
+import io.github.jeuxjeux20.guicybukkit.PluginDependencies;
+import io.github.jeuxjeux20.guicybukkit.PluginModule;
 import org.bukkit.command.PluginCommand;
 import org.jetbrains.annotations.Nullable;
 

@@ -1,4 +1,4 @@
-package fr.jeuxjeux20.guicybukkit.command;
+package io.github.jeuxjeux20.guicybukkit.command;
 
 /**
  * A {@link CommandConfigurator} that uses the {@link CommandName} annotation to get

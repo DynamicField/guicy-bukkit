@@ -1,8 +1,8 @@
-package fr.jeuxjeux20.guicybukkit;
+package io.github.jeuxjeux20.guicybukkit;
 
 import be.seeseemelk.mockbukkit.plugin.ListenerEntry;
-import fr.jeuxjeux20.guicybukkit.command.CommandConfigurator;
-import fr.jeuxjeux20.guicybukkit.command.CommandNotFoundException;
+import io.github.jeuxjeux20.guicybukkit.command.CommandConfigurator;
+import io.github.jeuxjeux20.guicybukkit.command.CommandNotFoundException;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.PluginCommandUtils;
 import org.bukkit.event.Event;

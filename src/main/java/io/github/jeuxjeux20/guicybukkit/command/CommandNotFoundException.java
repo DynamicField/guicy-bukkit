@@ -1,4 +1,4 @@
-package fr.jeuxjeux20.guicybukkit.command;
+package io.github.jeuxjeux20.guicybukkit.command;
 
 /**
  * This exception is thrown when a command has not been found.
