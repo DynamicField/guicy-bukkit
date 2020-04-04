@@ -37,6 +37,13 @@
         <url>https://github.com/jeuxjeux20/guicy-bukkit/issues</url>
     </issueManagement>
 
+    <developers>
+        <developer>
+            <name>jeuxjeux20</name>
+            <email>jeuxjeux20@outlook.fr</email>
+        </developer>
+    </developers>
+
     <build>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
