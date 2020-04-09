@@ -13,7 +13,7 @@ import org.bukkit.command.PluginCommand;
  * Here is an example on using this class:
  * <pre>
  * &#064;CommandName("hello")
- * public class HelloCommandAnnotated extends SelfConfiguredCommandExecutor
+ * public class HelloCommand extends SelfConfiguredCommandExecutor {
  *     &#064;Override
  *     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
  *         sender.sendMessage("Hello, " + sender.getName() + "!");
