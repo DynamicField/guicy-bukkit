@@ -1,5 +1,9 @@
 package com.github.jeuxjeux20.guicybukkit.command;
 
+import org.bukkit.command.PluginCommand;
+
+import javax.annotation.Nonnull;
+
 /**
  * A {@link CommandConfigurator} that uses the {@link CommandName} annotation to get
  * its {@linkplain #getCommandName() command name}.
@@ -25,4 +29,11 @@ public interface AnnotatedCommandConfigurator extends CommandConfigurator {
     default String getCommandName() {
         return CommandName.Helper.getCommandNameOrThrow(this.getClass());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("NullableProblems") // We're overriding the @Nullable
+    @Override
+    void configureCommand(@Nonnull PluginCommand command);
 }

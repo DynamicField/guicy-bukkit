@@ -133,7 +133,7 @@ public class PluginDependencies {
      * using the specified {@code commandFinder} with the name
      * the {@linkplain CommandConfigurator command configurator} requests.
      * <p>
-     * If the {@code commandFinder} returns {@code null},
+     * If the {@code commandFinder} returns {@code null} for a configurator with a non-null command name,
      * this method will <b>throw a {@link CommandNotFoundException}</b>.
      *
      * @throws CommandNotFoundException when {@code commandFinder} returns {@code null}.
@@ -142,11 +142,15 @@ public class PluginDependencies {
     public void registerCommands(CommandConfigurator.CommandFinder commandFinder) {
         for (CommandConfigurator commandConfigurator : commandsConfigurators) {
             String commandName = commandConfigurator.getCommandName();
-            PluginCommand pluginCommand = commandFinder.find(commandName);
-            if (pluginCommand == null) {
-                throw new CommandNotFoundException("Couldn't find the command " + commandName + ".");
+            if (commandName == null) {
+                commandConfigurator.configureCommand(null);
+            } else {
+                PluginCommand pluginCommand = commandFinder.find(commandName);
+                if (pluginCommand == null) {
+                    throw new CommandNotFoundException("Couldn't find the command '" + commandName + "'.");
+                }
+                commandConfigurator.configureCommand(pluginCommand);
             }
-            commandConfigurator.configureCommand(pluginCommand);
         }
     }
 

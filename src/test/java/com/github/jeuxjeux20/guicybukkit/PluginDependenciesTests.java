@@ -1,21 +1,19 @@
 package com.github.jeuxjeux20.guicybukkit;
 
-import be.seeseemelk.mockbukkit.plugin.ListenerEntry;
 import com.github.jeuxjeux20.guicybukkit.command.CommandConfigurator;
 import com.github.jeuxjeux20.guicybukkit.command.CommandNotFoundException;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.PluginCommandUtils;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginManager;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.plugin.RegisteredListener;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
+import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,6 +22,7 @@ import static org.hamcrest.Matchers.contains;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class PluginDependenciesTests extends PluginTestBase {
 
@@ -39,7 +38,7 @@ public class PluginDependenciesTests extends PluginTestBase {
             }
 
             @Override
-            public void configureCommand(PluginCommand command) {
+            public void configureCommand(@Nullable PluginCommand command) {
                 configuredCommand[0] = command;
             }
         };
@@ -52,20 +51,39 @@ public class PluginDependenciesTests extends PluginTestBase {
     }
 
     @Test
-    void registerCommandsThrowsOnCommandNull() {
+    void registerCommandsConfiguresNullCommandName() {
         CommandConfigurator commandConfigurator = mock(CommandConfigurator.class);
         Set<CommandConfigurator> commandConfigurators = Collections.singleton(commandConfigurator);
         PluginDependencies pluginDependencies = new PluginDependencies(Collections.emptySet(), commandConfigurators);
 
-        assertThrows(CommandNotFoundException.class,
-                () -> pluginDependencies.registerCommands(name -> null));
+        pluginDependencies.registerCommands(plugin);
+        verify(commandConfigurator).configureCommand(null);
     }
 
     @Test
-    void registerListenersAddsListeners() throws NoSuchFieldException, IllegalAccessException {
+    void registerCommandsThrowsOnUnknownCommand() {
+        CommandConfigurator commandConfigurator = new CommandConfigurator() {
+            @Override
+            public String getCommandName() {
+                return "aaaaaaaaaaaa";
+            }
+
+            @Override
+            public void configureCommand(@Nullable PluginCommand command) {
+            }
+        };
+
+        Set<CommandConfigurator> commandConfigurators = Collections.singleton(commandConfigurator);
+        PluginDependencies pluginDependencies = new PluginDependencies(Collections.emptySet(), commandConfigurators);
+
+        assertThrows(CommandNotFoundException.class, () -> pluginDependencies.registerCommands(plugin));
+    }
+
+    @Test
+    void registerListenersAddsListeners() {
         Listener listener = new Listener() {
             @EventHandler
-            public void onWhatever(Event event) {
+            public void onWhatever(PlayerDeathEvent event) {
             }
         };
         Set<Listener> listeners = Collections.singleton(listener);
@@ -73,22 +91,9 @@ public class PluginDependenciesTests extends PluginTestBase {
 
         pluginDependencies.registerListeners(plugin);
 
-        List<Listener> registeredListeners = getAllListeners(plugin);
+        List<Listener> registeredListeners = Arrays.stream(PlayerDeathEvent.getHandlerList().getRegisteredListeners())
+                .map(RegisteredListener::getListener)
+                .collect(Collectors.toList());
         assertThat(registeredListeners, contains(listener));
-    }
-
-    private static List<Listener> getAllListeners(Plugin plugin) throws NoSuchFieldException, IllegalAccessException {
-        PluginManager pluginManager = plugin.getServer().getPluginManager();
-
-        Field eventListenersMapField = pluginManager.getClass().getDeclaredField("eventListeners");
-        eventListenersMapField.setAccessible(true);
-
-        @SuppressWarnings("unchecked")
-        Map<Plugin, List<ListenerEntry>> eventListenersMap =
-                (Map<Plugin, List<ListenerEntry>>) eventListenersMapField.get(pluginManager);
-
-        List<ListenerEntry> listenerEntries = eventListenersMap.get(plugin);
-
-        return listenerEntries.stream().map(ListenerEntry::getListener).distinct().collect(Collectors.toList());
     }
 }

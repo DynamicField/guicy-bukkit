@@ -29,7 +29,7 @@ public @interface CommandName {
          * your local grocery store will give you free cookies. Except if you're in
          * <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">lockdown</a>.
          */
-        protected Helper() {
+        private Helper() {
         }
 
         /**

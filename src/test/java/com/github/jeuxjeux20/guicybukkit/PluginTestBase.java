@@ -16,6 +16,6 @@ public abstract class PluginTestBase {
 
     @AfterEach
     public void tearDown() {
-        MockBukkit.unload();
+        MockBukkit.unmock();
     }
 }
